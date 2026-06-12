@@ -1,0 +1,300 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f6f9;
+}
+
+/* Hidden radio inputs for card selection */
+.plan-radio {
+    display: none;
+}
+
+/* Hero */
+.hero {
+    background: linear-gradient(135deg, #1a2d5a 0%, #0f4c81 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 20px 80px;
+}
+
+.hero h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+}
+
+.hero p {
+    color: #b8cde8;
+    max-width: 380px;
+    margin: 0 auto;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+/* Cards wrapper */
+.cards-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 50px 20px 60px;
+    flex-wrap: wrap;
+}
+
+/* Individual card */
+.card {
+    background: white;
+    border-radius: 10px;
+    width: 220px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.09);
+    overflow: visible;
+    cursor: pointer;
+    display: block;
+    border: 2px solid transparent;
+    position: relative;
+    transition: transform 0.25s ease, box-shadow 0.25s ease,
+        border-color 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Hover zoom */
+.card:hover {
+    transform: scale(1.06);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
+}
+
+/* Selected card */
+#radio-basic:checked~.cards-wrapper .card-basic,
+#radio-standard:checked~.cards-wrapper .card-standard,
+#radio-advanced:checked~.cards-wrapper .card-advanced {
+    border-color: #0f4c81;
+    box-shadow: 0 0 0 4px rgba(15, 76, 129, 0.2);
+}
+
+/* Selected badge */
+#radio-basic:checked~.cards-wrapper .card-basic::before,
+#radio-standard:checked~.cards-wrapper .card-standard::before,
+#radio-advanced:checked~.cards-wrapper .card-advanced::before {
+    content: "✓ Selected";
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #0f4c81;
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    z-index: 10;
+    letter-spacing: 0.3px;
+}
+
+/* Card header */
+.card-header {
+    background: #2c3e6b;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+    border-radius: 8px 8px 0 0;
+}
+
+.badge {
+    background: #e74c3c;
+    color: white;
+    font-size: 0.58rem;
+    padding: 2px 7px;
+    border-radius: 20px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+/* Card body */
+.card-body {
+    padding: 24px 20px 28px;
+    text-align: center;
+}
+
+.price {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #1a2d5a;
+    line-height: 1;
+}
+
+.price sup {
+    font-size: 1rem;
+    vertical-align: super;
+}
+
+.price-sub {
+    font-size: 0.72rem;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+.features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 22px;
+    font-size: 0.8rem;
+    color: #555;
+    line-height: 2;
+}
+
+.features li::before {
+    content: "• ";
+    color: #0f4c81;
+    font-weight: 700;
+}
+
+/* Buy button */
+.btn-buy {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #3a7bd5;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background 0.2s ease;
+}
+
+.btn-buy:hover {
+    background: #1a5fbf;
+}
+
+/* Success modal */
+.success-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+.success-overlay:target {
+    display: flex;
+}
+
+.success-box {
+    background: white;
+    border-radius: 14px;
+    padding: 44px 50px;
+    text-align: center;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.22);
+    max-width: 340px;
+    width: 90%;
+    animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.success-icon {
+    font-size: 3.2rem;
+    margin-bottom: 14px;
+}
+
+.success-box h2 {
+    color: #27ae60;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.success-box p {
+    color: #777;
+    font-size: 0.87rem;
+    line-height: 1.6;
+    margin-bottom: 26px;
+}
+
+.btn-close {
+    display: inline-block;
+    padding: 11px 32px;
+    background: #27ae60;
+    color: white;
+    text-decoration: none;
+    border-radius: 7px;
+    font-weight: 700;
+    font-size: 0.87rem;
+    transition: background 0.2s;
+}
+
+.btn-close:hover {
+    background: #1e8449;
+}
+
+/* FAQ */
+.faq {
+    background: white;
+    padding: 60px 20px 80px;
+    text-align: center;
+}
+
+.faq h2 {
+    font-size: 1.6rem;
+    color: #1a2d5a;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.faq-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    flex: 1 1 260px;
+    text-align: left;
+}
+
+.faq-item h3 {
+    font-size: 0.95rem;
+    color: #1a2d5a;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.faq-item p {
+    font-size: 0.82rem;
+    color: #888;
+    line-height: 1.7;
+}
